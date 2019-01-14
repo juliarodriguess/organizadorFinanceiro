@@ -6,7 +6,7 @@ import './Navbar.scss';
 function Navbar() {
     return (
         <div class="navbar">
-            <AppBar position="fixed" color="primary">
+            <AppBar position="absolute" color="primary">
                 <Toolbar>
                     <figure>
                         <img src='https://image.flaticon.com/icons/svg/1087/1087803.svg' className="logo-moneyController" alt="money-controller" />

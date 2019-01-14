@@ -1,14 +1,15 @@
 import React from 'react';
-import { Router } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import Navbar from './Navbar/Navbar';
 import Home from './Home/Home';
+import FormScreen from './FormScreen/FormScreen';
 
 const ScreensRoot = () => {
     return(
         <React.Fragment>
+            <Navbar />
             <Switch>
-                <Route path="/" exact component={Navbar} />
+                <Route path="/" exact component={FormScreen} />
             </Switch>
         </React.Fragment>
     )
