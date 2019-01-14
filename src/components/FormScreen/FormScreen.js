@@ -8,8 +8,8 @@ function FormScreen() {
     return(
         <Paper className="background-form">
             <form className="form-controller">
-                {/* <OwnerDefinition /> */}
-                <ExpensesInclusion />
+                <OwnerDefinition />
+                {/* <ExpensesInclusion /> */}
             </form>
         </Paper>
     )

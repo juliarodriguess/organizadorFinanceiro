@@ -1,0 +1,1 @@
+export const OWNER_UPDATE_VALUE = 'OWNER_UPDATE_VALUE';
