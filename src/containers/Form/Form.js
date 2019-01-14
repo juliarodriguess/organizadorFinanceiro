@@ -6,7 +6,7 @@ class Form extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src='https://image.flaticon.com/icons/svg/1087/1087803.svg' className="logo-moneyControl" alt="money-control" />
+          
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>

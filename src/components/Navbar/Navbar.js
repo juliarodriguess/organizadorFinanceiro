@@ -1,11 +1,20 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
+import {AppBar, Toolbar, Typography} from '@material-ui/core';
+import './Navbar.scss';
+
 
 function Navbar() {
     return (
         <div class="navbar">
             <AppBar position="fixed" color="primary">
-                Organizador Financeiro
+                <Toolbar>
+                    <figure>
+                        <img src='https://image.flaticon.com/icons/svg/1087/1087803.svg' className="logo-moneyController" alt="money-controller" />
+                    </figure>
+                    <Typography variant="h6" color="inherit">
+                        Organizador Financeiro
+                    </Typography>
+                </Toolbar>
             </AppBar>
         </div>
     )
