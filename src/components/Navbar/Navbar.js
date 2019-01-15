@@ -5,7 +5,7 @@ import './Navbar.scss';
 
 function Navbar() {
     return (
-        <div class="navbar">
+        <div className="navbar">
             <AppBar position="absolute" color="primary">
                 <Toolbar>
                     <figure>

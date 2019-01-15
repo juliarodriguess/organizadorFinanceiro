@@ -9,7 +9,8 @@ const ScreensRoot = () => {
         <React.Fragment>
             <Navbar />
             <Switch>
-                <Route path="/" exact component={FormScreen} />
+                <Route path="/" exact component={Home}/>
+                <Route path="/" component={FormScreen}/>
             </Switch>
         </React.Fragment>
     )

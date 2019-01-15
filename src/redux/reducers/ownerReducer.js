@@ -3,7 +3,8 @@ import { OWNER_UPDATE_VALUE } from '../actions/actionTypes';
 const initialState = {
     newValue: 'Julia'
   };
-  export const ownerReducer = (state = initialState, action) => {
+ 
+export const ownerReducer = (state = initialState, action) => {
     switch (action.type) {
       case OWNER_UPDATE_VALUE:
         return {
@@ -13,4 +14,4 @@ const initialState = {
       default:
         return state;
     }
-  };
+};

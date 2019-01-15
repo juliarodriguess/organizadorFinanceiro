@@ -1,32 +1,47 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { clickButton } from '../../redux/actions';
-import { TextField, Typography, Button } from '@material-ui/core';
+import { TextField, Typography, Button, Grid } from '@material-ui/core';
 
 
 class OwnerDefinition extends Component {
     state={
-        inputValue: ''
+        inputValue: '',
+        redirect: false
     }
 
     inputChange = event => {
         this.setState({
           inputValue: event.target.value
         })
-      }
+    }
 
+    sendName = () => {
+        return (
+            this.props.clickButton(this.state.inputValue),
+            this.setState({
+                redirect: true
+              }),
+            console.log("sendName")
+        )}
+    
     render() {
-        const { 
-            clickButton,
-            newValue 
-        } = this.props;
+        const { newValue } = this.props;
+
+        if(this.state.redirect) {
+            return <Redirect to="/incluir-gasto"/>
+        }
+
+        localStorage.setItem("nome", newValue)
 
         const { inputValue } = this.state;
 
         return(
-            <fieldset className="input-owner">
+            <div className="input-owner">
                 <Typography variant="h6" align="center">Vamos começar!</Typography>
+                <Grid container xs={12} justify="flex-end">
                 <TextField
                     id="name"
                     label="Qual é o seu nome?"
@@ -36,9 +51,9 @@ class OwnerDefinition extends Component {
                     variant="outlined"
                     fullWidth={true}
                 />
-                <Button variant="contained" color="primary" onClick={() => clickButton(inputValue)}>Ir</Button>
-                <Typography variant="h6" align="center">{newValue}</Typography>
-            </fieldset>
+                <Button variant="contained" color="primary" onClick={this.sendName}>Ir</Button>
+                </Grid>
+            </div>
         )
     }
 };
