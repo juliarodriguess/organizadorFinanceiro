@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Redirect } from 'react-router-dom'
 import { sendExpensesData } from '../../redux/actions/index'
 import { connect } from 'react-redux'
 import { TextField, Typography, Button, FormControl, InputLabel, Select, OutlinedInput, MenuItem, Grid, InputAdornment } from '@material-ui/core';
@@ -10,7 +11,8 @@ class ExpensesInclusion extends Component {
         this.onChangeSelect = this.onChangeSelect.bind(this)
         this.state = {
             labelWidth: 0,
-            selectValue: ''
+            selectValue: '',
+            redirect: false
         }
     }
 
@@ -28,17 +30,23 @@ class ExpensesInclusion extends Component {
         const data = {
             name: name,
             date: document.querySelector("#date").value,
-            expenseType: this.state.selectValue,
+            expenseType: document.querySelector("#expenseType").value,
             cost: document.querySelector("#cost").value
          }
         this.props.sendExpensesData(data)
+        this.setState({redirect: true})
     }
 
     render() {
         console.log(this.props)
+
+        if(this.state.redirect) {
+            return <Redirect to="/resultado"/>
+        }
+
         return (
             <fieldset className="expenses-inclusion">
-                <Typography variant="h6" align="center">Oi, {name}! Inclua aqui a despesa</Typography>
+                <Typography variant="h6" align="center">Descreva aqui a despesa</Typography>
                 <Grid container xs={12} justify="flex-end">
                     <TextField
                         id="date"
@@ -61,6 +69,7 @@ class ExpensesInclusion extends Component {
                             Qual o tipo de gasto?
                     </InputLabel>
                         <Select
+                            id="expenseType"
                             autoWidth="true"
                             value={this.state.selectValue}
                             input={

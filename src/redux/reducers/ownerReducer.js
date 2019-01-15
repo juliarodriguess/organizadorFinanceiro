@@ -1,7 +1,7 @@
 import { OWNER_UPDATE_VALUE } from '../actions/actionTypes';
 
 const initialState = {
-    newValue: 'Julia'
+    newValue: ''
   };
  
 export const ownerReducer = (state = initialState, action) => {

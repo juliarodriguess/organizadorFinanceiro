@@ -31,7 +31,7 @@ class OwnerDefinition extends Component {
         const { newValue } = this.props;
 
         if(this.state.redirect) {
-            return <Redirect to="/incluir-gasto"/>
+            return <Redirect to="/form/incluir-gasto"/>
         }
 
         localStorage.setItem("nome", newValue)

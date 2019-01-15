@@ -2,7 +2,7 @@ import axios from 'axios'
 import { OWNER_UPDATE_VALUE, EXPENSE_POST_VALUE, EXPENSE_GET_VALUE } from '../actions/actionTypes';
 
 const baseURL = {
-  baseURL: 'http://localhost:4000/api'
+  baseURL: 'https://intense-fjord-83556.herokuapp.com/api'
 
 }
 
@@ -22,24 +22,23 @@ export function sendExpensesData(data) {
       axios.create(baseURL)
         .post('/expenses', json)
         .then(response => {
-          data.id = response.data._id
           dispatch({ type: EXPENSE_POST_VALUE, data })
           console.log("api rodando", json, response)
+          return response.data
         })
     }
   }
 
-export function getExpensesData(data) {
+
+export function getExpensesData() {
   return (dispatch) => {
-    const url = `/expenses/${data.name}`
-    axios.create(url)
-      .post('/expenses/:name')
+    const url = `/expenses`
+    axios.create(baseURL)
+      .get(url)
       .then(response => {
-        const expenses = response.data.map(item => ({
-          expenseType: item.expenseType,
-          cost: item.cost
-        }))
-        dispatch({ type: EXPENSE_GET_VALUE, expenses })
+        console.log(response)
+        return response.data
+        dispatch({ type: EXPENSE_GET_VALUE, response })
       })
   }
 }
