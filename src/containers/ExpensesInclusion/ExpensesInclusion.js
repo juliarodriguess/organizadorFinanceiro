@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { sendExpensesData } from '../../redux/actions/index'
+import { connect } from 'react-redux'
 import { TextField, Typography, Button, FormControl, InputLabel, Select, OutlinedInput, MenuItem, Grid, InputAdornment } from '@material-ui/core';
 
 class ExpensesInclusion extends Component {
@@ -22,10 +24,21 @@ class ExpensesInclusion extends Component {
         this.setState({ selectValue: e.target.value })
     }
 
+    sendData = () => {
+        const data = {
+            name: name,
+            date: document.querySelector("#date").value,
+            expenseType: this.state.selectValue,
+            cost: document.querySelector("#cost").value
+         }
+        this.props.sendExpensesData(data)
+    }
+
     render() {
+        console.log(this.props)
         return (
             <fieldset className="expenses-inclusion">
-                <Typography variant="h6" align="center">Inclua aqui a despesa</Typography>
+                <Typography variant="h6" align="center">Oi, {name}! Inclua aqui a despesa</Typography>
                 <Grid container xs={12} justify="flex-end">
                     <TextField
                         id="date"
@@ -50,12 +63,9 @@ class ExpensesInclusion extends Component {
                         <Select
                             autoWidth="true"
                             value={this.state.selectValue}
-                            // onChange={this.handleChange}
                             input={
                                 <OutlinedInput
                                     labelWidth={this.state.labelWidth}
-                                    name="age"
-                                    id="outlined-age-simple"
                                     onChange={this.onChangeSelect}
                                 />
                             }
@@ -68,9 +78,9 @@ class ExpensesInclusion extends Component {
                     </FormControl>
                     <Grid container alignItems="center" justify="space-between">
                     <TextField
+                        id="cost"
                         label="Quanto custou?"
                         type="number"
-                        // fullWidth
                         margin="normal"
                         variant="outlined"
                         placeholder="XX,XX"
@@ -79,7 +89,7 @@ class ExpensesInclusion extends Component {
                         }}
                     >
                     </TextField>
-                    <Button variant="contained" color="primary">Incluir esse gasto</Button>
+                    <Button variant="contained" color="primary" onClick={this.sendData}>Incluir esse gasto</Button>
                     </Grid>
                 </Grid>
             </fieldset>
@@ -87,4 +97,6 @@ class ExpensesInclusion extends Component {
     }
 };
 
-export default ExpensesInclusion;
+const name = localStorage.getItem("nome")
+
+export default connect (null, {sendExpensesData})(ExpensesInclusion);

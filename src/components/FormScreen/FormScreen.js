@@ -12,8 +12,8 @@ class FormScreen extends Component {
             <Grid container justify="center">
                 <Paper className="background-form">
                     <div className="form-controller">
-                        <Route path="/identificacao" component={OwnerDefinition}/>
-                        <Route path="/incluir-gasto" component={ExpensesInclusion}/>
+                        <Route path="/form/identificacao" component={OwnerDefinition}/>
+                        <Route path="/form/incluir-gasto" component={ExpensesInclusion}/>
                     </div>
                 </Paper>
             </Grid>
